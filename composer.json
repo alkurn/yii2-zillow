@@ -1,36 +1,29 @@
 {
-    "name": "alkurn/zillow",
-    "type": "application",
-    "description": "Zillow PHP API Wrapper",
-    "keywords": ["zillow", "php", "api"],
-    "homepage": "https://github.com/alkurn/zillow",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Ganesh alkurn",
-            "email": "ganesh.alkurn@gmail.com"
-        }
-    ],
-    "support": {
-        "issues": "https://github.com/alkurn/zillow/issues"
-    },
-    "require": {
-        "php": ">=5.4.0",
-        "guzzlehttp/guzzle": "*",
-        "fabpot/goutte": "*"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "4.*"
-    },
-    "autoload": {
-        "psr-4": {
-            "Client\\": "Zillow/"
-        },
-        "psr-0": { "Zillow": "." }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0-dev"
-        }
+  "name": "alkurn/yii2-zillow",
+   "type": "yii2-extension",
+   "description": "Zillow PHP API Wrapper",
+   "keywords": ["zillow", "php", "api"],
+   "homepage": "https://github.com/alkurn/yii2-zillow",
+   "license": "MIT",
+  "support": {
+    "issues": "https://gitlab.com/alkurn/yii2-zillow/issue",
+    "source": "https://gitlab.com/alkurn/yii2-zillow"
+  },
+  "authors": [
+    {
+      "name": "Ganesh",
+      "email": "ganesh.alkurn@gmail.com"
     }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "yiisoft/yii2": "*", 
+    "guzzlehttp/guzzle": "*",
+    "fabpot/goutte": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "alkurn\\zillow\\": ""
+    }
+  }
 }

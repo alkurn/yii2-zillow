@@ -3,8 +3,8 @@ Zillow, PHP Wrapper
 
 This is a simple PHP Wrapper for the Zillow API services.
 
-.. image:: https://travis-ci.org/GaneshAlkurn/zillow.svg?branch=master
-    :target: https://travis-ci.org/GaneshAlkurn/zillow
+.. image:: https://travis-ci.org/alkurn/zillow.svg?branch=master
+    :target: https://travis-ci.org/alkurn/zillow
 
 Requirements
 ------------
@@ -14,11 +14,11 @@ depends on PHP 5.4+, Goutte 2.0+, Guzzle 4+.
 Installation
 ------------
 
-Add `GaneshAlkurn/zillow`` as a require dependency in your ``composer.json`` file:
+Add `alkurn/yii2-zillow` as a require dependency in your ``composer.json`` file:
 
 .. code-block:: bash
 
-    php composer.phar require GaneshAlkurn/zillow:~1.0
+    composer require alkurn/yii2-zillow:dev-master
 
 Usage
 -----
