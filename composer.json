@@ -22,7 +22,7 @@
     "fabpot/goutte": "*"
   },
   "autoload": {
-    "psr-7": {
+    "psr-4": {
       "alkurn\\zillow\\": ""
     }
   }
