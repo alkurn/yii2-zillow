@@ -15,6 +15,7 @@ use GuzzleHttp\Client as GuzzleClient;
 use Goutte\Client as GoutteClient;
 use GuzzleHttp\ClientInterface as GuzzleClientInterface;
 
+
 /**
  * Client
  *
@@ -267,10 +268,8 @@ class ZillowClient
     	if(!$this->getZWSID()) {
     		throw new ZillowException("You must submit the ZWSID");
     	}
-
     	// Run the call
     	$response = $this->getClient()->get(self::END_POINT.$call.'.htm', ['query' => ['zws-id' => $this->getZWSID()] + $params]);
-
         $this->response = $response->xml();
 
         // Parse response
@@ -285,16 +284,20 @@ class ZillowClient
      */
     protected function parseResponse($response)
     {
+
         // Init
         $this->response = json_decode(json_encode($response), true);
 
-        if(!$this->response['message']) {
+        if(isset($this->response['message']) && !$this->response['message']) {
             $this->setStatus(999, 'XML WAS NOT FOUND');
             return;
         }
 
-        // Check if we have an error
-        $this->setStatus($this->response['message']['code'], $this->response['message']['text']);
+
+        if(isset($this->response['message']) && !$this->response['message']) {
+            // Check if we have an error
+            $this->setStatus($this->response['message']['code'], $this->response['message']['text']);
+        }
 
         // If request was succesful then parse the result
          if($this->isSuccessful()) {
