@@ -22,7 +22,7 @@ use GuzzleHttp\ClientInterface as GuzzleClientInterface;
  * @author Ganesh Alkurn <ganesh@gmail.com>
  */
 class ZillowClient
-{   
+{
     /**
      * @var zillow api endpoint
      */
@@ -41,7 +41,7 @@ class ZillowClient
      * @var int
      */
     protected $errorCode = 0;
-	
+
     /**
      * @var string
      */
@@ -51,12 +51,12 @@ class ZillowClient
      * @var array
      */
     protected $response;
-    
+
     /**
      * @var array
      */
     protected $results;
-    
+
     /**
      * @var array
      */
@@ -224,9 +224,9 @@ class ZillowClient
 
     /**
      * see @GetPhotos
-     * Works the same way but instead passing a uri 
+     * Works the same way but instead passing a uri
      * you can pass a zpid and it will perform a request to grab the uri
-     * based on the id 
+     * based on the id
      * @see GetPhotos
      * @param int @zpid
      * @return array
@@ -303,7 +303,7 @@ class ZillowClient
             $this->setStatus(999, 'XML WAS NOT FOUND');
             return;
         }
-
+        
         if(isset($this->response['message']) && !$this->response['message']) {
             // Check if we have an error
             $this->setStatus($this->response['message']['code'], $this->response['message']['text']);
