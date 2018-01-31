@@ -263,14 +263,25 @@ class ZillowClient
      * @param array $params
      * @return array
      */
-    protected function doRequest($call, array $params) {
-    	// Validate
-    	if(!$this->getZWSID()) {
-    		throw new ZillowException("You must submit the ZWSID");
-    	}
-    	// Run the call
-    	$response = $this->getClient()->get(self::END_POINT.$call.'.htm', ['query' => ['zws-id' => $this->getZWSID()] + $params]);
-        $this->response = $response->xml();
+    protected function doRequest($call, array $params)
+    {
+
+        // Validate
+        if (!$this->getZWSID()) {
+            throw new ZillowException("You must submit the ZWSID");
+        }
+
+        // Run the call
+        $params = current($params);
+        $param = [];
+        foreach ($params as $key => $val) {
+            $param[] = implode('=', [$key, $val]);
+        }
+        $params = implode('&', $param);
+        $response = $this->getClient()->get(self::END_POINT . $call . '.htm?zws-id=' . $this->getZWSID() . '&' . $params);
+
+
+        $this->response = simplexml_load_string($response->getBody()->getContents());
 
         // Parse response
         return $this->parseResponse($this->response);
@@ -292,7 +303,6 @@ class ZillowClient
             $this->setStatus(999, 'XML WAS NOT FOUND');
             return;
         }
-
 
         if(isset($this->response['message']) && !$this->response['message']) {
             // Check if we have an error
