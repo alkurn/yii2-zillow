@@ -280,7 +280,6 @@ class ZillowClient
         $params = implode('&', $param);
         $response = $this->getClient()->get(self::END_POINT . $call . '.htm?zws-id=' . $this->getZWSID() . '&' . $params);
 
-
         $this->response = simplexml_load_string($response->getBody()->getContents());
 
         // Parse response
@@ -303,14 +302,19 @@ class ZillowClient
             $this->setStatus(999, 'XML WAS NOT FOUND');
             return;
         }
-        
+
+        if(isset($this->response['message']) && ($code = $this->response['message']['code']) && $code != 200) {
+            $this->setStatus($code, $this->response['message']['text']);
+            return;
+        }
+
         if(isset($this->response['message']) && !$this->response['message']) {
             // Check if we have an error
             $this->setStatus($this->response['message']['code'], $this->response['message']['text']);
         }
 
         // If request was succesful then parse the result
-         if($this->isSuccessful()) {
+         if( $this->isSuccessful() ) {
             if($this->response['response'] && isset($this->response['response']['results']) && count($this->response['response']['results'])) {
                 foreach($this->response['response']['results'] as $result) {
                     if (isset($result[0])) { // multiple results
