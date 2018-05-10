@@ -275,7 +275,7 @@ class ZillowClient
         $params = current($params);
         $param = [];
         foreach ($params as $key => $val) {
-            $param[] = implode('=', [$key, $val]);
+            $param[] = implode('=', [$key, urlencode($val)]);
         }
         $params = implode('&', $param);
         $response = $this->getClient()->get(self::END_POINT . $call . '.htm?zws-id=' . $this->getZWSID() . '&' . $params);
